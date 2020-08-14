@@ -29,3 +29,21 @@ JWT must have the following fields.
 | secret   | string | body | Secret for the user. Minimum length is 8. Maximum length is 20                                                                                                                                  |
 
 
+### Update user
+
+`POST /api/user/update`
+
+| Name     | Type   | In   | Description                                                                                                                                                                                     |
+|----------|--------|------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| username | string | body | VPN identity of the new user. <br>The minimum length is 6. Maximum length is 20<br>only alphanumeric characters allowed and username can only be started with characters.<br>Not case sensitive |
+| secret   | string | body | Secret for the user. Minimum length is 8. Maximum length is 20                                                                                                                                  |
+
+If a username does not exist it will return an error.
+
+### Delete user
+
+`DELETE /api/user/delete/{username}`
+
+| Name     | Type   | In   | Description            |
+|----------|--------|------|------------------------|
+| username | string | path | Username to be removed |
