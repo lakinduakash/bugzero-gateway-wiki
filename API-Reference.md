@@ -38,7 +38,7 @@ JWT must have the following fields.
 | username | string | body | VPN identity of the new user. <br>The minimum length is 6. Maximum length is 20<br>only alphanumeric characters allowed and username can only be started with characters.<br>Not case sensitive |
 | secret   | string | body | Secret for the user. Minimum length is 8. Maximum length is 20                                                                                                                                  |
 
-If a username does not exist it will return an error.
+If `username` does not exist it will return an error.
 
 ### Delete user
 
@@ -47,3 +47,15 @@ If a username does not exist it will return an error.
 | Name     | Type   | In   | Description            |
 |----------|--------|------|------------------------|
 | username | string | path | Username to be removed |
+
+If `username` does not exist it will return an error.
+
+### List users
+
+`GET /api/user/list`
+
+This will return a list of usernames as an array.
+
+Ex: `['user1','user2','user3']`
+
+
