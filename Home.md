@@ -1,1 +1,1 @@
-Welcome to the bugzero-gateway wiki!
+# Welcome to the Bugzero Gateway wiki!
