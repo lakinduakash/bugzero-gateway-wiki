@@ -84,6 +84,55 @@ After successful execution, a VPN server is up and client configuration will be 
 - `vpn-ios-or-mac.mobileconfig`
 - `vpn-ubuntu-client.sh`
 
+### Setting up the API server
+
+The API server contacts the VPN service through SSH. So you have to enable the SSH daemon in the VPN server and allow API server to access.
+
+The API server is authenticated using JWT. So, first of all, you need to generate a key pair and get the public key and keep the private key securely for token generation.
+
+You need to have a base64 version of the public key. Then you need to add it in the `.env` file.
+
+Example to generate key files and convert them to base64 in Linux as follows,
+```sh
+openssl genrsa -out private.pem 4096
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+
+# Get the base64 string
+cat public.pem| base64
+```
+
+#### Start server without docker
+
+**Requirements**
+- Node 12+ runtime
+
+After you clone the repository you can see the file called `.env.stub` in the `api` folder. It ha all the required environment variables. You need to create `.env` file inside the `api` folder and copy those variables to it. Then you can specify the variables.
+
+Following are the variables you need to configure,
+
+```sh
+
+PORT=3000 #Port of the API server
+AUTH_PUBLIC_KEY=base64encoded_public_key # This should be added in a single line
+AUTH_PRIVATE_KEY=base64encoded_private_key # Not required for server, only for testing
+LOG_LEVEL=error # Valid values are debug,info,error. Default is debug
+
+SKIP_TOKEN_CHECK=0 # For testing purpose only. If you set it as 1 JWT token will not be checked
+
+#Connection parameters for vpn host
+SSH_HOST=localhost #SSH host address
+SSH_PORT=22 #SSH port
+SSH_USERNAME=testssh
+SSH_PASSWORD=testssh@123
+SSH_USE_PASSWORD=1 # If value is 0 you need to set the private key below
+SSH_PRIVATE_KEY=base64encoded_private_key # Private key in base64. Optional if username and passowrd is provided
+```
+After you set the correct environment variables, you can start the server. Before that, you need to run `npm install` inside the `api` folder.
+
+Then start the API server by executing `npm start`
+
+If server is successfully started you can see a message like this `[2020-08-15T02:42:01.628] [INFO] default - Server started on port 3000`
+
 
 
 
