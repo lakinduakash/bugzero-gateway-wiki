@@ -13,7 +13,7 @@ JWT must have the following fields.
 
 {
   "sub": "org-id",
-  "exp": 1516240342
+  "exp": 1516240342,
   "iat": 1516239022
 }
 ```
