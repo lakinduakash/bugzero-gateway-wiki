@@ -90,6 +90,43 @@ The API server contacts the VPN service through SSH. So you have to enable the S
 
 The API server is authenticated using JWT. So, first of all, you need to generate a key pair and get the public key and keep the private key securely for token generation.
 
+#### Using docker
+
+You can clone the repository and build the docker image and then you can easily deploy.
+
+You need to `cd` into `api` folder after cloning the repository.
+
+Then you can build the docker image using the following.
+
+You need to have a base64 version of the public key.
+
+```
+docker build \
+            --tag "bugzero-gateway/api \
+            --build-arg AUTH_PUBLIC_KEY="$BASE_64_PUB_KEY" .
+```
+
+Then you can run the built container. Before that make sure you pass the following environment variables into the container.
+
+```sh
+
+PORT=3000 #Port of the API server
+AUTH_PUBLIC_KEY=base64encoded_public_key # This should be added in a single line. If you specify in build arg this is optional.
+AUTH_PRIVATE_KEY=base64encoded_private_key # Not required for server, only for testing
+LOG_LEVEL=error # Valid values are debug,info,error. Default is debug
+
+SKIP_TOKEN_CHECK=0 # For testing purpose only. If you set it as 1 JWT token will not be checked
+
+#Connection parameters for vpn host
+SSH_HOST=localhost #SSH host address
+SSH_PORT=22 #SSH port
+SSH_USERNAME=testssh
+SSH_PASSWORD=testssh@123
+SSH_USE_PASSWORD=1 # If value is 0 you need to set the private key below
+SSH_PRIVATE_KEY=base64encoded_private_key # Private key in base64. Optional if username and passowrd is provided
+```
+#### Without docker
+
 You need to have a base64 version of the public key. Then you need to add it in the `.env` file.
 
 Example to generate key files and convert them to base64 in Linux as follows,
