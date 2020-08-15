@@ -77,12 +77,13 @@ Then you can proceed with other steps as usual.
 
 Copy and keep `CA-cert.pem` `cert.pem` files from `/etc/vpncert/${vpn_host_address}` 
 since you need to send those files to client to configure VPN connection to server
+(You can also use API to obtain these files)
 
 After successful execution, a VPN server is up and client configuration will be written to the current directory. Following files will e available.
 
-- `vpn-instructions.txt`
-- `vpn-ios-or-mac.mobileconfig`
-- `vpn-ubuntu-client.sh`
+- `/etc/vpn-instructions.txt`
+- `/etc/vpn-ios-or-mac.mobileconfig`
+- `/etc/vpn-ubuntu-client.sh`
 
 ### Setting up the API server
 
