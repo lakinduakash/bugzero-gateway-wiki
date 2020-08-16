@@ -58,4 +58,36 @@ This will return a list of usernames as an array.
 
 Ex: `['user1','user2','user3']`
 
+### Get Server Status
+
+`GET /api/util/status`
+
+Returns the VPN server status
+
+### Get CA
+
+`GET /api/util/getca`
+
+Returns the CA certificate as a text
+
+### Get certificate
+
+`GET /api/util/getcert`
+
+Returns the client certificate as a text
+
+
+### Get ubuntu client configuration script
+
+`GET /api/util/getubuntuclientconfig`
+
+Returns the ubuntu client configuration script as text
+
+### Get logs
+
+`GET /api/util/logs`
+
+Returns the VPN server logs
+
+
 
