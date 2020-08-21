@@ -91,6 +91,17 @@ The API server contacts the VPN service through SSH. So you have to enable the S
 
 The API server is authenticated using JWT. So, first of all, you need to generate a key pair and get the public key and keep the private key securely for token generation.
 
+You need to have a base64 version of the public key.
+
+Example to generate key files and convert them to base64 in Linux as follows,
+```sh
+openssl genrsa -out private.pem 4096
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+
+# Get the base64 string
+cat public.pem| base64
+```
+
 #### Using docker
 
 You can clone the repository and build the docker image and then you can easily deploy.
@@ -128,16 +139,7 @@ SSH_PRIVATE_KEY=base64encoded_private_key # Private key in base64. Optional if u
 ```
 #### Without docker
 
-You need to have a base64 version of the public key. Then you need to add it in the `.env` file.
-
-Example to generate key files and convert them to base64 in Linux as follows,
-```sh
-openssl genrsa -out private.pem 4096
-openssl rsa -in private.pem -outform PEM -pubout -out public.pem
-
-# Get the base64 string
-cat public.pem| base64
-```
+You need to add the public key with BASE64 in the `.env` file.
 
 #### Start server without docker
 
