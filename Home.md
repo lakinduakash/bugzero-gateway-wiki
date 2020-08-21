@@ -141,7 +141,7 @@ SSH_PRIVATE_KEY=base64encoded_private_key # Private key in base64. Optional if u
 
 You need to add the public key with BASE64 in the `.env` file.
 
-#### Start server without docker
+#### Start server
 
 **Requirements**
 - Node 12+ runtime
