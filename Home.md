@@ -79,6 +79,10 @@ Copy and keep `CA-cert.pem` `cert.pem` files from `/etc/vpncert/${vpn_host_addre
 since you need to send those files to client to configure VPN connection to server
 (You can also use API to obtain these files)
 
+#### Change IP pool of VPN
+The default IP pool for the VPN gateway is `10.10.0.0/9`. You can modify it by editing `VPNIPPOOL="10.10.0.0/9"` variable in
+[vpnpool.sh](https://github.com/bug-zero/bugzero-gateway/blob/master/scripts/vpnpool.sh)
+
 After successful execution, a VPN server is up and client configuration will be written to the `/etc`. Following files will e available.
 
 - `/etc/vpn-instructions.txt`
